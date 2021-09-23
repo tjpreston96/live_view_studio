@@ -63,6 +63,8 @@ defmodule LiveViewStudioWeb.LightLive do
   end
 
   def handle_event("update", %{"brightness" => brightness}, socket) do
+    brightness = String.to_integer(brightness)
+    IO.inspect(brightness)
     socket = assign(socket, brightness: brightness)
     {:noreply, socket}
   end
