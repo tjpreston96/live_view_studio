@@ -10,10 +10,17 @@ defmodule LiveViewStudioWeb.LightLive do
     ~L"""
     <h1>Front Porch Light</h1>
     <div id="light">
-      <div class="meter">
+
+      <div class="meter" >
         <span style="width: <%= @brightness %>%">
           <%= @brightness %>%
         </span>
+      </div>
+
+      <div style="margin-bottom:1rem">
+        <form phx-change="update">
+          <input type="range" name="brightness" min="0" max="100" value="<%= @brightness%>">
+        </form>
       </div>
 
       <button phx-click="off">
@@ -52,6 +59,11 @@ defmodule LiveViewStudioWeb.LightLive do
 
   def handle_event("off", _, socket) do
     socket = assign(socket, :brightness, 0)
+    {:noreply, socket}
+  end
+
+  def handle_event("update", %{"brightness" => brightness}, socket) do
+    socket = assign(socket, brightness: brightness)
     {:noreply, socket}
   end
 end

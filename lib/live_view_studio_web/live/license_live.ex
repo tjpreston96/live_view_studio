@@ -18,7 +18,7 @@ defmodule LiveViewStudioWeb.LicenseLive do
           <div class="seats">
             <img src="images/license.svg">
             <span>
-              Your license is currently for <strong><%= @seats %></strong> seats.
+              Your license is currently for <strong><%= @seats %></strong> <%= ngettext("seat", "seats", @seats) %>.
             </span>
           </div>
 
